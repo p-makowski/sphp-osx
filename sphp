@@ -5,11 +5,21 @@ if [ $# -ne 1 ]; then
 	exit 1
 fi
 
+which php
+php -v | head -n 1
+
+php -r "echo 'Version from php ' . phpversion();"
+echo ""
+
 currentversion="`php -r \"echo str_replace('.', '', substr(phpversion(), 0, 3));\"`"
 newversion="$1"
+echo "Current: "$currentversion
+echo "New:     "$newversion
 
 shortOld="`php -r \"echo substr(phpversion(), 0, 1);\"`"
 shortNew="`php -r \"echo substr('$1', 0, 1);\"`"
+echo "Short old: "$shortOld
+echo "Short new: "$shortNew
 
 brew list php$newversion 2> /dev/null > /dev/null
 
@@ -46,6 +56,8 @@ if [ $? -eq 0 ]; then
 	fi
 
 	echo "Done."
+	which php
+	php -v | head -n 1
 else
 	echo "PHP version $newversion was not found."
 	exit 1
