@@ -41,8 +41,8 @@ if [ $? -eq 0 ]; then
 	sudo sed -i -e "/LoadModule php${shortNew}_module/s/^#//" $apacheConf
 	
 	echo "Fixing AJA Composer..."
-	sudo sed -i -e "/#php${shortOld}/s/^#*/#/" ~/.aja
-	sudo sed -i -e "/#php${shortNew}/s/^#//" ~/.aja
+	sudo sed -i -e "/_php${shortOld}/s/^#*/#/" ~/.aja
+	sudo sed -i -e "/_php${shortNew}/s/^#//" ~/.aja
 
 	echo "Updating version file..."
 
