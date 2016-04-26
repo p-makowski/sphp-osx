@@ -39,6 +39,10 @@ if [ $? -eq 0 ]; then
 	apacheConf=`httpd -V | grep -i server_config_file | cut -d '"' -f 2`
 	sudo sed -i -e "/LoadModule php${shortOld}_module/s/^#*/#/" $apacheConf
 	sudo sed -i -e "/LoadModule php${shortNew}_module/s/^#//" $apacheConf
+	
+	echo "Fixing AJA Composer..."
+	sudo sed -i -e "/#php${shortOld}/s/^#*/#/" ~/.aja
+	sudo sed -i -e "/#php${shortNew}/s/^#//" ~/.aja
 
 	echo "Updating version file..."
 
